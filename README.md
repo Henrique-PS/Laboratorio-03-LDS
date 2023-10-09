@@ -17,7 +17,7 @@
 ## :rocket: Lab02S01:
 
 Diagrama de Caso de Uso: <br/>
-![texto](Projeto/Diagramas/CasoDeUso.png)
+![texto](Projeto/Diagramas/CasoDeUsoV2.png)
 
 Diagrama de Classes: <br/>
 ![texto](Projeto/Diagramas/diagramaClasseV2.png)
