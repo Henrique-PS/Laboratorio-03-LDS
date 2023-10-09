@@ -20,7 +20,7 @@ Diagrama de Caso de Uso: <br/>
 ![texto](Projeto/Diagramas/CasoDeUso.png)
 
 Diagrama de Classes: <br/>
-![texto](Projeto/Diagramas/diagramaClasseV1.png)
+![texto](Projeto/Diagramas/diagramaClasseV2.png)
 <br/>
 
 Histórios de Usuário:
