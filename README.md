@@ -23,6 +23,10 @@ Diagrama de Classes: <br/>
 ![texto](Projeto/Diagramas/diagramaClasseV2.png)
 <br/>
 
+Diagrama de Entidade e Relacionamento: <br/>
+![texto](Projeto/Diagramas/diagramaERV1.png)
+<br/>
+
 Histórios de Usuário:
 
 Eu me chamo Marcio, e sou aluno de filosofia da PUC, gosto de ler livros. Desejo poder realizar meu cadastro no sistema de mérito, para ser reconhecido por meu bom comportamento, minha participação em aula, etc.
