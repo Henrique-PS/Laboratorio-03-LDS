@@ -55,7 +55,6 @@ const Login = () => {
     const { authenticated, login } = useContext(AuthContext);
 
     const handleClickButton = () =>{
-        debugger;   
         login(values.email, values.password, tipo);
     };
 

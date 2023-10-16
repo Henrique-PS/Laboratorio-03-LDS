@@ -1,10 +1,12 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 
 import Login from './Pages/Login'
 import Home from './Pages/Home'
 import Cadastro from './Pages/Cadastro'
+import HomeEmpresa from './pages/HomeEmpresa'
+import HomeAluno from './pages/HomeAluno'
 import Axios from 'axios';
 
 import { AuthContext } from "./contexts/auth";
@@ -12,9 +14,14 @@ import { AuthContext } from "./contexts/auth";
 
 export default function AppRoutes() {
   const [user, setUser] = useState(null);
+  
 
   const login = (email, senha, tipo) => {
-    debugger;
+
+    //apenas enquanto n resolve login
+    window.location.href("/Implementacao/frontend/src/pages/homeEmpresa.jsx");
+    //
+
     if(tipo == "aluno"){
       Axios.post("http://localhost:3001/loginAluno", {
           email: email,
@@ -38,14 +45,13 @@ export default function AppRoutes() {
       }).then((response)=>{
           console.log(response);
           setUser({cnpj: "", email});
-          debugger;
       });
   }
     
   };
 
   const logout = () => {
-
+    setUser(null);
   }
 
   return (
@@ -55,6 +61,8 @@ export default function AppRoutes() {
           <Route path="/"  element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/homeEmpresa" element={<HomeEmpresa />} />
+          <Route path="/homeAluno" element={<HomeAluno />} />
         </Routes>
       </AuthContext.Provider>
     </BrowserRouter>
