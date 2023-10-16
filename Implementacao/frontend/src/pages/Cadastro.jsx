@@ -16,15 +16,15 @@ import "./cadastro.css";
 const Cadastro = () => {
 
     const [values, setValues] = useState();
+
     const [aluno, setAluno] = useState(true);
     const [professor, setProfessor] = useState(true);
 
     const options = [
         { value: 'Aluno', label: 'Aluno' },
         { value: 'Empresa', label: 'Empresa' },
-        { value: 'Professor', label: 'Professor' }
-      ]
-    
+      ]         
+    //   { value: 'Professor', label: 'Professor' }
     const handleChangesValue = (value) => {
         setValues(prevValue=>({
             ...prevValue,
@@ -67,10 +67,18 @@ const Cadastro = () => {
             }).then((response)=>{
                 console.log(response);
             });
-            toast.success('Usuário adicionado com sucesso');
+            
+        } else if(!aluno && !professor){
+            Axios.post("http://localhost:3001/registerEmpresa", {
+                nome: values.username,
+                email: values.email,
+                senha: values.password,
+                cnpj: values.cnpj,
+            }).then((response)=>{
+                console.log(response);
+            });
         }
-        
-        console.log(values);
+        toast.success('Usuário adicionado com sucesso');
     };
 
     return (

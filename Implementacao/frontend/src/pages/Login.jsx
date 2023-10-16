@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-
+import Axios from 'axios';
+import Select from 'react-select';
 import styled from 'styled-components';
 import "./login.css";
-
+import { AuthContext } from '../contexts/auth';
 
 const Wrapper = styled.div`
 
@@ -25,9 +26,17 @@ const LoginForm = styled.form`
 // width: 300px; /* ou o tamanho desejado para o formulário */
 // margin: 20px;
 
+
 const Login = () => {
+    const options = [
+        { value: 'Aluno', label: 'Aluno' },
+        { value: 'Empresa', label: 'Empresa' },
+        { value: 'Professor', label: 'Professor' },
+      ]         
+    
 
     const [values, setValues] = useState();
+    const [tipo, setTipo] = useState('aluno');
     
     const handleChangesValue = (value) => {
         setValues(prevValue=>({
@@ -35,9 +44,19 @@ const Login = () => {
             [value.target.name]: value.target.value,
         }));
     };
+    const handleChangesType = (value) => {
+        setValues(prevValue=>({
+            ...prevValue,
+            ['tipo']: value.value,
+        }));
+        setTipo(value.value.toLowerCase());
+    };
+
+    const { authenticated, login } = useContext(AuthContext);
 
     const handleClickButton = () =>{
-        console.log(values);
+        debugger;   
+        login(values.email, values.password, tipo);
     };
 
     return (
@@ -66,6 +85,9 @@ const Login = () => {
                     className="text_input"
                     onChange={handleChangesValue}
                     />
+                </div>
+                <div className="select_area">
+                    <Select onChange={handleChangesType} classNamePrefix="tipo" defaultValue={options[0]} name="Tipo" options={options} className="select_input" isSearchable={false}/>
                 </div>
                 <button type="submit" className="btn" onClick={() => handleClickButton()}>Login</button>
                 </form>

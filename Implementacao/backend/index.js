@@ -26,7 +26,31 @@ app.post("/registerAluno", (req, res)=>{
 
     let SQL = "INSERT INTO aluno (nome, email, senha, cpf, instituicao, curso, matricula, moedas, rg, endereco) VALUES ( ?,?,?,?,?,?,?,?,?,? )";
     db.query(SQL, [nome, email, senha, cpf, instituicao, curso, matricula, 0, rg, endereco], (err, result) =>{
-        console.log(err);
+        if(err) console.log(err);
+    });
+});
+
+app.post("/registerEmpresa", (req, res)=>{
+    const { nome } = req.body;
+    const { email } = req.body;
+    const { senha } = req.body;
+    const { cnpj } = req.body;
+
+    let SQL = "INSERT INTO empresa (nome, email, senha, cnpj ) VALUES ( ?,?,?,? )";
+    db.query(SQL, [nome, email, senha, cnpj], (err, result) =>{
+        if(err) console.log(err);
+    });
+});
+
+app.post("/loginEmpresa", (req, res)=>{
+    const { email } = req.body;
+    const { senha } = req.body;
+
+    let SQL = "SELECT * FROM empresa WHERE email = ? and senha = ?";
+    db.query(SQL, [email, senha], (err, result) =>{
+        if(err) console.log(err);
+        else res.send(result);
+    
     });
 });
 
