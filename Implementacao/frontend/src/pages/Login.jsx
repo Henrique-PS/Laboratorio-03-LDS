@@ -29,7 +29,7 @@ const Login = () => {
                 <LoginForm>
                     <div className="mb-3">
                         <label className="form-label">Email</label>
-                        <input type="email" className="form-control" defaultValue="email@example.com" readOnly />
+                        <input type="email" className="form-control" defaultValue="email@example.com" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Password</label>
