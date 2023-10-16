@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import React from 'react'
-import Select from 'react-select'
+import React from 'react';
+import Select from 'react-select';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import Axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
 
 import styled from 'styled-components';
 import "./cadastro.css";
@@ -50,13 +53,30 @@ const Cadastro = () => {
     };
 
     const handleClickButton = () =>{
+        if (aluno) {
+            Axios.post("http://localhost:3001/registerAluno", {
+                nome: values.username,
+                email: values.email,
+                senha: values.password,
+                cpf: values.cpf,
+                instituicao: values.instituicao,
+                curso: values.curso,
+                matricula: Math.floor(Math.random() * (100000 - 1) + 1),
+                rg: values.rg,
+                endereco: values.endereco,
+            }).then((response)=>{
+                console.log(response);
+            });
+            toast.success('Usuário adicionado com sucesso');
+        }
+        
         console.log(values);
     };
 
     return (
         <div>
             <Navbar />
-
+            <ToastContainer />
             <div className="logincad">
                 <h4 className="cad">Cadastro</h4>
                 <form className="formcad">
@@ -119,6 +139,26 @@ const Cadastro = () => {
                     id="curso"
                     name="curso"
                     placeholder="Curso"
+                    className="text_inputcad"
+                    onChange={handleChangesValue}
+                    />
+                </div>}
+                {aluno && <div className="text_areacad">
+                    <input
+                    type="rg"
+                    id="rg"
+                    name="rg"
+                    placeholder="RG"
+                    className="text_inputcad"
+                    onChange={handleChangesValue}
+                    />
+                </div>}
+                {aluno && <div className="text_areacad">
+                    <input
+                    type="endereco"
+                    id="endereco"
+                    name="endereco"
+                    placeholder="Endereço"
                     className="text_inputcad"
                     onChange={handleChangesValue}
                     />
