@@ -7,6 +7,7 @@ import Home from './Pages/Home'
 import Cadastro from './Pages/Cadastro'
 import HomeEmpresa from './pages/HomeEmpresa'
 import HomeAluno from './pages/HomeAluno'
+import HomeProfessor from './pages/HomeProfessor'
 import Axios from 'axios';
 
 import { AuthContext } from "./contexts/auth";
@@ -63,6 +64,7 @@ export default function AppRoutes() {
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/homeEmpresa" element={<HomeEmpresa />} />
           <Route path="/homeAluno" element={<HomeAluno />} />
+          <Route path="/homeProfessor" element={<HomeProfessor />} />
         </Routes>
       </AuthContext.Provider>
     </BrowserRouter>
