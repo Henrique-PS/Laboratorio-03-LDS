@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import Col from 'react-bootstrap/Col';
@@ -6,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 
 import styled from 'styled-components';
 import "./login.css";
+
 
 const Wrapper = styled.div`
 
@@ -24,6 +26,20 @@ const LoginForm = styled.form`
 // margin: 20px;
 
 const Login = () => {
+
+    const [values, setValues] = useState();
+    
+    const handleChangesValue = (value) => {
+        setValues(prevValue=>({
+            ...prevValue,
+            [value.target.name]: value.target.value,
+        }));
+    };
+
+    const handleClickButton = () =>{
+        console.log(values);
+    };
+
     return (
         <div>
             <Navbar />
@@ -34,11 +50,11 @@ const Login = () => {
                 <div className="text_area">
                     <input
                     type="text"
-                    id="username"
-                    name="username"
-                    placeholder="email@examplo.com"
+                    id="email"
+                    name="email"
+                    placeholder="Email@examplo.com"
                     className="text_input"
-
+                    onChange={handleChangesValue}
                     />
                 </div>
                 <div className="text_area">
@@ -48,12 +64,12 @@ const Login = () => {
                     name="password"
                     placeholder="Senha"
                     className="text_input"
-
+                    onChange={handleChangesValue}
                     />
                 </div>
-                <button type="submit" className="btn">Login</button>
+                <button type="submit" className="btn" onClick={() => handleClickButton()}>Login</button>
                 </form>
-                <a className="link" href="/signup">Sign Up</a>
+                <a className="link" href="/Cadastro">Cadastrar</a>
             </div>
 
             {/* <Wrapper>

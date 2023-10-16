@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import Login from './Pages/Login'
 import Home from './Pages/Home'
-// import Cadastro from './Pages/Cadastro'
+import Cadastro from './Pages/Cadastro'
 
 export default function AppRoutes() {
   return (
@@ -11,7 +11,7 @@ export default function AppRoutes() {
       <Routes>
       <Route path="/"  element={<Home />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/cadastro" element={<Cadastro />} /> */}
+        <Route path="/cadastro" element={<Cadastro />} />
       </Routes>
     </BrowserRouter>
   )
