@@ -27,6 +27,14 @@ Diagrama de Entidade e Relacionamento: <br/>
 ![texto](Projeto/Diagramas/diagramaERV1.png)
 <br/>
 
+Diagrama de Sequência listagem das vantagens (para o aluno): <br/>
+![texto](Projeto\Diagramas\Diagrama_seq_listagem_das_vantagens.png)
+<br/>
+
+ Diagrama de Sequência cadastro de vantagens (pela empresa parceira): <br/>
+![texto](Projeto\Diagramas\Diagrama_seq_ cadastro_de_vantagens.png)
+<br/>
+
 Histórios de Usuário:
 
 Eu me chamo Marcio, e sou aluno de filosofia da PUC, gosto de ler livros. Desejo poder realizar meu cadastro no sistema de mérito, para ser reconhecido por meu bom comportamento, minha participação em aula, etc.
