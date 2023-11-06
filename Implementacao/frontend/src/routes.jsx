@@ -59,8 +59,8 @@ export default function AppRoutes() {
     <BrowserRouter>
       <AuthContext.Provider value={{authenticated: !!user, user, login, logout}} >
         <Routes>
-          <Route path="/"  element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          {/* <Route path="/"  element={<Home />} /> */}
+          <Route path="/" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/homeEmpresa" element={<HomeEmpresa />} />
           <Route path="/homeAluno" element={<HomeAluno />} />

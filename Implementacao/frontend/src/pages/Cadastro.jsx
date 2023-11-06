@@ -52,7 +52,9 @@ const Cadastro = () => {
         
     };
 
-    const handleClickButton = () =>{
+    const handleClickButton = (e) =>{
+        e.preventDefault()
+
         if (aluno) {
             Axios.post("http://localhost:3001/registerAluno", {
                 nome: values.username,
@@ -87,7 +89,7 @@ const Cadastro = () => {
             <ToastContainer />
             <div className="logincad">
                 <h4 className="cad">Cadastro</h4>
-                <form className="formcad">
+                <form className="formcad" onSubmit={handleClickButton}>
                 <div className="text_areacad">
                     <input
                     type="text"
@@ -181,9 +183,9 @@ const Cadastro = () => {
                     onChange={handleChangesValue}
                     />
                 </div>}
-                <button type="submit" className="btncad" onClick={handleClickButton}>Cadastrar</button>
+                <button type="submit" className="btncad">Cadastrar</button>
                 </form>
-                <a className="linkcad" href="/Login">Logar</a>
+                <a className="linkcad" href="/">Logar</a>
             </div>
 
             {/* <Wrapper>
