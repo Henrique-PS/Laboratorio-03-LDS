@@ -28,11 +28,11 @@ Diagrama de Entidade e Relacionamento: <br/>
 <br/>
 
 Diagrama de Sequência listagem das vantagens (para o aluno): <br/>
-![texto](Projeto\Diagramas\Diagrama_seq_listagem_das_vantagens.png)
+![texto](Projeto/Diagramas/Diagrama_seq_listagem_das_vantagens.png)
 <br/>
 
  Diagrama de Sequência cadastro de vantagens (pela empresa parceira): <br/>
-![texto](Projeto\Diagramas\Diagrama_seq_ cadastro_de_vantagens.png)
+![texto](Projeto/Diagramas/Diagrama_seq_cadastro_de_vantagens.png)
 <br/>
 
 Histórios de Usuário:
