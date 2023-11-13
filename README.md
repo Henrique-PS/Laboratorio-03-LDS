@@ -32,7 +32,11 @@ Diagrama de Sequência listagem das vantagens (para o aluno): <br/>
 <br/>
 
  Diagrama de Sequência cadastro de vantagens (pela empresa parceira): <br/>
-![texto](Projeto/Diagramas/Diagrama_seq_cadastro_de_vantagens.png)
+![texto](Projeto/Diagramas/Diag_seq_cadastro_vantagens_v2.png)
+<br/>
+
+ Diagrama de Sequência troca de vantagens (pelo aluno): <br/>
+![texto](Projeto/Diagramas/Diag_seq_troca_vantagens.drawio.png)
 <br/>
 
 Histórios de Usuário:
