@@ -6,12 +6,29 @@ import Footer from '../components/footer';
 import Axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'; 
+import emailjs from 'emailjs-com';
 
 import styled from 'styled-components';
 import "./Homes.css";
 const HomeAluno = () => {
 
     const [values, setValues] = useState();
+
+    function sendEmail(e) {
+        e.preventDefault();
+    
+        emailjs.sendForm(
+         'service_1lhcpih', 
+         'template_rlzsr5u', 
+         e.target, 
+         'S_dKS_P0J98U_JHAK'
+        )
+        .then((result) => {
+            console.log(result.text);
+          }, (error) => {
+        console.log(error.text);
+        });
+    }
 
     return (
         <div>
@@ -31,7 +48,7 @@ const HomeAluno = () => {
                         <h5><b>Quantidade:</b> 57</h5>
                         <h5><b>Valor:</b> 30 moedas</h5>
                     </div>
-                    <button>Comprar</button>
+                    <button type="submit" value="Submit"> Comprar </button>
                 </div>
                 <div className="card">
                     <div className="card-details">
@@ -41,7 +58,7 @@ const HomeAluno = () => {
                         <h5><b>Quantidade:</b> 12</h5>
                         <h5><b>Valor:</b> 70 moedas</h5>
                     </div>
-                    <button>Comprar</button>
+                    <button type="submit" value="Submit"> Comprar </button>
                 </div>
                 <div className="card">
                     <div className="card-details">
@@ -51,7 +68,7 @@ const HomeAluno = () => {
                         <h5><b>Quantidade:</b> 25</h5>
                         <h5><b>Valor:</b> 110 moedas</h5>
                     </div>
-                    <button>Comprar</button>
+                    <button type="submit" value="Submit"> Comprar </button>
                 </div>
                 <div className="card">
                     <div className="card-details">
@@ -61,7 +78,7 @@ const HomeAluno = () => {
                         <h5><b>Quantidade:</b> 3</h5>
                         <h5><b>Valor:</b> 140 moedas</h5>
                     </div>
-                    <button>Comprar</button>
+                    <button type="submit" value="Submit"> Comprar </button>
                 </div>
             </div>
             <div className="containerBoxes">
