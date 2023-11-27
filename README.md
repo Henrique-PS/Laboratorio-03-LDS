@@ -39,6 +39,10 @@ Diagrama de Sequência listagem das vantagens (para o aluno): <br/>
 ![texto](Projeto/Diagramas/Diag_seq_troca_vantagens.drawio.png)
 <br/>
 
+ Diagrama de Comunicação: <br/>
+![texto](Projeto/Diagramas/comunicacao.drawio.png)
+<br/>
+
 Histórios de Usuário:
 
 Eu me chamo Marcio, e sou aluno de filosofia da PUC, gosto de ler livros. Desejo poder realizar meu cadastro no sistema de mérito, para ser reconhecido por meu bom comportamento, minha participação em aula, etc.
