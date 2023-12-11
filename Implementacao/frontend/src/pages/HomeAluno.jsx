@@ -1,19 +1,12 @@
 import { useState } from 'react'
-import React from 'react';
-import Select from 'react-select';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
-import Axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'; 
 import emailjs from 'emailjs-com';
 
-import styled from 'styled-components';
 import "./Homes.css";
 const HomeAluno = () => {
-
-    const [values, setValues] = useState();
-
     function sendEmail(e) {
         e.preventDefault();
     

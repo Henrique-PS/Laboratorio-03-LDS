@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": false,
+        "incremental": true,
+        "module": "commonjs",
+        "noFallthroughCasesInSwitch": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strictBindCallApply": false,
+        "strictNullChecks": false,
+        "target": "es6",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "baseUrl": "./",
+        "outDir": "./dist"
+    }
+}

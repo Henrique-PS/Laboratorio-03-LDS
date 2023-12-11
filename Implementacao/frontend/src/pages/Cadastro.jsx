@@ -1,211 +1,108 @@
-import { useState } from 'react'
-import React from 'react';
-import Select from 'react-select';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css'; 
+import { Input, HStack, VStack, Text, Button } from "@chakra-ui/react";
+import { useState } from "react";
+import { register } from "../services/endpoints";
+import { useWarning } from "../hooks/useWarning";
+import { useSuccess } from "../hooks/useSuccess";
+import { useNavigate } from "react-router-dom";
+import { handleChange } from "../utils/changeObjectState";
+export function Cadastro() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    cpf: "",
+    rg: "",
+    address: "",
+    password: "",
+    passwordConfirmation: "",
+    role: "student",
+  });
 
-import styled from 'styled-components';
-import "./cadastro.css";
+  const { Warning } = useWarning();
+  const { Success } = useSuccess();
+  const navigate = useNavigate();
 
-const Cadastro = () => {
+  const handleSubmit = async (form) => {
+    try {
+      if (form.password !== form.passwordConfirmation)
+        throw new Error("As senhas não coincidem");
+      form.cpf = form.cpf.replace(/[^0-9]/g, "");
+      form.rg = form.rg.replace(/[^0-9]/g, "");
+      delete form.passwordConfirmation;
 
-    const [values, setValues] = useState();
+      await register(form);
 
-    const [aluno, setAluno] = useState(true);
-    const [professor, setProfessor] = useState(true);
+      Success("Cadastro realizado com sucesso, agora você pode fazer login");
 
-    const options = [
-        { value: 'Aluno', label: 'Aluno' },
-        { value: 'Empresa', label: 'Empresa' },
-      ]         
-    //   { value: 'Professor', label: 'Professor' }
-    const handleChangesValue = (value) => {
-        setValues(prevValue=>({
-            ...prevValue,
-            [value.target.name]: value.target.value,
-        }));
-    };
-    const handleChangesType = (value) => {
-        setValues(prevValue=>({
-            ...prevValue,
-            ['tipo']: value.value,
-        }));
+      navigate("/Login");
+    } catch (e) {
+      Warning({
+        title: "Erro ao cadastrar",
+        message: e.message || "Verifique os dados e tente novamente",
+      });
+    }
+  };
 
-        if(value.value.toLowerCase() == "aluno"){
-            setAluno(true);
-            setProfessor(false);
-        } 
-        else if (value.value.toLowerCase() == "professor" ) {
-            setProfessor(true);
-            setAluno(false);
-        }    
-        else{
-            setAluno(false);
-            setProfessor(false);
-        }
-        
-    };
+  return (
+    <VStack
+      bg="lightblue"
+      w="100%"
+      h="100dvh"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <HStack bg="white" p="10" rounded="2xl" boxShadow="3px 3px 3px gray">
+        <VStack gap="1rem">
+          <Text fontSize="16pt">Cadastro</Text>
+          <Input
+            onChange={(e) => handleChange(e, form, setForm)}
+            name="name"
+            placeholder="Nome"
+          />
+          <Input
+            onChange={(e) => handleChange(e, form, setForm)}
+            name="email"
+            placeholder="Email"
+          />
+          <Input
+            onChange={(e) => handleChange(e, form, setForm)}
+            name="cpf"
+            placeholder="CPF"
+          />
+          <Input
+            onChange={(e) => handleChange(e, form, setForm)}
+            name="rg"
+            placeholder="RG"
+          />
+          <Input
+            onChange={(e) => handleChange(e, form, setForm)}
+            name="address"
+            placeholder="Endereço"
+          />
+          <Input
+            onChange={(e) => handleChange(e, form, setForm)}
+            type="password"
+            name="password"
+            placeholder="Senha"
+          />
+          <Input
+            onChange={(e) => handleChange(e, form, setForm)}
+            type="password"
+            name="passwordConfirmation"
+            placeholder="Confirmação de Senha"
+          />
 
-    const handleClickButton = () =>{
-        if (aluno) {
-            Axios.post("http://localhost:3001/registerAluno", {
-                nome: values.username,
-                email: values.email,
-                senha: values.password,
-                cpf: values.cpf,
-                instituicao: values.instituicao,
-                curso: values.curso,
-                matricula: Math.floor(Math.random() * (100000 - 1) + 1),
-                rg: values.rg,
-                endereco: values.endereco,
-            }).then((response)=>{
-                console.log(response);
-            });
-            
-        } else if(!aluno && !professor){
-            Axios.post("http://localhost:3001/registerEmpresa", {
-                nome: values.username,
-                email: values.email,
-                senha: values.password,
-                cnpj: values.cnpj,
-            }).then((response)=>{
-                console.log(response);
-            });
-        }
-        toast.success('Usuário adicionado com sucesso');
-    };
-
-    return (
-        <div>
-            <Navbar />
-            <ToastContainer />
-            <div className="logincad">
-                <h4 className="cad">Cadastro</h4>
-                <form className="formcad">
-                <div className="text_areacad">
-                    <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    placeholder="Nome"
-                    className="text_inputcad"
-                    onChange={handleChangesValue}
-                    />
-                </div>
-                <div className="text_areacad">
-                    <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    placeholder="Email@examplo.com"
-                    className="text_inputcad"
-                    onChange={handleChangesValue}
-                    />
-                </div>
-                <div className="text_areacad">
-                    <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Senha"
-                    className="text_inputcad"
-                    onChange={handleChangesValue}
-                    />
-                </div>
-                <div className="select_areacad">
-                    <Select onChange={handleChangesType} classNamePrefix="tipo" defaultValue={options[0]} name="Tipo" options={options} className="select_inputcad" isSearchable={false}/>
-                </div>
-                {(aluno || professor) && <div className="text_areacad">
-                    <input
-                    type="cpf"
-                    id="cpf"
-                    name="cpf"
-                    placeholder="CPF"
-                    className="text_inputcad"
-                    onChange={handleChangesValue}
-                    />
-                </div>}
-                {(aluno || professor) && <div className="text_areacad">
-                    <input
-                    type="instituicao"
-                    id="instituicao"
-                    name="instituicao"
-                    placeholder="Instituição"
-                    className="text_inputcad"
-                    onChange={handleChangesValue}
-                    />
-                </div>}
-                {aluno && <div className="text_areacad">
-                    <input
-                    type="curso"
-                    id="curso"
-                    name="curso"
-                    placeholder="Curso"
-                    className="text_inputcad"
-                    onChange={handleChangesValue}
-                    />
-                </div>}
-                {aluno && <div className="text_areacad">
-                    <input
-                    type="rg"
-                    id="rg"
-                    name="rg"
-                    placeholder="RG"
-                    className="text_inputcad"
-                    onChange={handleChangesValue}
-                    />
-                </div>}
-                {aluno && <div className="text_areacad">
-                    <input
-                    type="endereco"
-                    id="endereco"
-                    name="endereco"
-                    placeholder="Endereço"
-                    className="text_inputcad"
-                    onChange={handleChangesValue}
-                    />
-                </div>}
-                {!aluno && !professor && <div className="text_areacad">
-                    <input
-                    type="cnpj"
-                    id="cnpj"
-                    name="cnpj"
-                    placeholder="CNPJ"
-                    className="text_inputcad"
-                    onChange={handleChangesValue}
-                    />
-                </div>}
-                <button type="submit" className="btncad" onClick={handleClickButton}>Cadastrar</button>
-                </form>
-                <a className="linkcad" href="/Login">Logar</a>
-            </div>
-
-            {/* <Wrapper>
-                <LoginForm>
-                    <h4>Login</h4>
-                        <div className="mb-3 text_area">
-                            <input type="email" className="form-control text_input" placeholder="email@example.com" />
-                        </div>
-                        <div className="mb-3 text_area">
-                            <input type="password" className="form-control text_input" placeholder="Password" />
-                        </div>
-                        <button type="submit" className="btn btn-primary">Login</button>
-                </LoginForm>
-                <a className="link" href="/signup">Sign Up</a>
-            </Wrapper> */}
-
-
-            <Footer />
-        </div>
-
-
-    );
-};
+          <HStack flexWrap="wrap">
+            <Button onClick={() => navigate("/Login")} colorScheme="green">
+              Já tem uma conta ?
+            </Button>
+            <Button onClick={() => handleSubmit(form)} colorScheme="blue">
+              Cadastrar
+            </Button>
+          </HStack>
+        </VStack>
+      </HStack>
+    </VStack>
+  );
+}
 
 export default Cadastro;

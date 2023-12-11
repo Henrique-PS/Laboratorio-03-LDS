@@ -1,16 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import AppRoutes from './routes'
-import Axios from 'axios';
-
+import { useEffect } from "react";
+import "./App.css";
+import AppRoutes from "./routes";
+import { hasTokenInCookies } from "./utils/tokenVerify";
 function App() {
-  const [count, setCount] = useState(0)
+    const currentRoute = location.pathname;
+    const enabledRoutes = ["/", "/login", "/cadastro"];
 
+    useEffect(() => {
+      if (!enabledRoutes.includes(currentRoute.toLowerCase()) && !hasTokenInCookies(document)) return window.location.href = 'http://localhost:5173/'
+    }, []);
+  
   return (
-    <AppRoutes/>
-  )
+      <AppRoutes />
+  );
 }
 
-export default App
+export default App;
